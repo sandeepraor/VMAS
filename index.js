@@ -22,6 +22,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('', (req, res) => {
+  res.send('Welcome to alien page');
+});
 app.use('/alienprofile', alienRoutes);
 app.use('/admin', adminRoutes);
 //Error Handling Middlewares
