@@ -20,10 +20,15 @@ router.post('/login', async (req, res) => {
   const { name, password } = req.body;
   try {
     const admin = await Admin.findOne({ name: name });
-    if (!admin) res.status(400).json({ message: 'Admin not found' });
+    if (!admin) {
+      res.status(400).json({ message: 'Admin not found' });
+      return;
+    }
     const isVaild = await bcrypt.compare(password, admin.password);
-    if (!isVaild) res.status(400).json({ msg: 'Enter a correct password' });
-    else if (isVaild) {
+    if (!isVaild) {
+      res.status(400).json({ msg: 'Enter a correct password' });
+      return;
+    } else if (isVaild) {
       const payload = {
         admin: {
           id: admin.id,
