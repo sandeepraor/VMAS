@@ -25,7 +25,7 @@ router.post('/createprofile', async (req, res, next) => {
   try {
     const { name, age, native_planet, weight, height, language } = req.body;
     if (
-      name.t === '' ||
+      name === '' ||
       age === '' ||
       native_planet === '' ||
       weight === '' ||
